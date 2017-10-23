@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Hello React!</title>
+		<!--你会发现并没有添加这个样式，原因：class在js语言的es6标准中，已经成为了一个关键字，用来申明一个类
+		在之前的es5等标准中，它是一个保留字，这里我们不能直接在标签中写class的，因为这是js的运行环境，而要将class
+		改为className，或写内连样式。-->
+		<!--注意在按照以前的方法写内连的样式是会报错的，原因，在react中，行内样式不是用字符串来表示的，要用一个样式对象来表示-->
+		<style type="text/css">
+			.alert-text{
+				color: red;
+			}
+		</style>
+		<!--//公共的cdn库很多-->
+		<script src="https://cdn.bootcss.com/react/15.4.2/react.min.js"></script>
+		<script src="https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>
+		<script src="js/browser.min.js"></script>
+		<!--<script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>-->
+		<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/JSXTransformer.js"></script>-->
+		<!--<script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>-->
+	</head>
+	<body>
+		<!--<div id="example"></div>
+		<script type="text/babel">
+			ReactDOM.render(
+				<h1>Hello,World!</h1>,
+				document.getElementById("example")
+			);
+		</script>-->
+		
+		<script type="text/babel">
+			var Hello=React.createClass({
+				render:function(){
+//					return (<div class="alert-text">Hello {this.props.title} {this.props.name}</div>);
+//					return (<div className="alert-text">Hello {this.props.title} {this.props.name}</div>);
+//					return (<div style="color:red;">Hello {this.props.title} {this.props.name}</div>);
+					var styleObj={
+						color:'red',
+						fontSize:'44px'
+					};
+//					return (<div style{{color:'red'}}>Hello {this.props.title} {this.props.name}</div>);
+					return (<div style={styleObj}>Hello {this.props.title} {this.props.name}</div>)
+					
+				}
+			});
+			React.render(<Hello name="World" title="Ms" />);
+			document.getElementById("container");
+		</script>
+	</body>
+</html>

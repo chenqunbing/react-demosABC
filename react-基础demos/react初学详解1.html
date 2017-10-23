@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Hello React!</title>
+		<!--你会发现并没有添加这个样式，原因：class在js语言的es6标准中，已经成为了一个关键字，用来申明一个类
+		在之前的es5等标准中，它是一个保留字，这里我们不能直接在标签中写class的，因为这是js的运行环境，而要将class
+		改为className，或写内连样式。-->
+		<!--注意在按照以前的方法写内连的样式是会报错的，原因，在react中，行内样式不是用字符串来表示的，要用一个样式对象来表示-->
+		<style type="text/css">
+			.alert-text{
+				color: red;
+			}
+		</style>
+		<!--//公共的cdn库很多-->
+		<script src="https://cdn.bootcss.com/react/15.4.2/react.min.js"></script>
+		<!--<script src="https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>-->
+		<!--<script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>-->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/JSXTransformer.js"></script>
+		<!--<script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>-->
+	</head>
+	<body>
+		
+		
+		<script type="text/babel">
+			var Hello=React.createClass({
+				getInitalState:function(){
+					alert('init');
+					return {
+						opacity:1.0,
+						fontSize:'12px'
+					};
+				},
+				
+				render:function(){
+//					使得样式被state初始化
+//					return <div style={this.state}>Hello {this.props.name}</div>
+					return <div style={opacity:this.state.opacity,fontSize:this.state.fontSize}>Hello {this.props.name}</div>
+				},
+				
+				componentWillMount:function(){
+					alert('will');
+				},
+				componentDidMount:function(){
+					alert('did');
+					var _self=this;
+					window.setTimeout(function(){
+//						this.setState(); 这里的this指向window
+						_self.setState({
+							opacity:0.5,
+							fontSize:'44px'
+						});
+					},1000);
+				}
+			});
+			React.render(<Hello name="World" title="Ms" />);
+			document.getElementById("container");
+		</script>
+	</body>
+</html>

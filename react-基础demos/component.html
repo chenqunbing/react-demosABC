@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.alert-text{
+				color: red;
+			}
+		</style>
+		<script src="js/react.js"></script>
+		<script src="js/react-dom.js"></script>
+		<script src="js/browser.min.js"></script>
+	</head>
+	<body>
+		<div id="container"></div>
+		<script type="text/babel">
+			var HelloMassage=React.createClass({
+				getInitialState:function(){
+					alert(11);
+					return {
+						opacity:1.0,
+						fontSize:'12px'
+					};
+				},
+				render:function(){
+					return <div><h1 style={{opacity:this.state.opacity,fontSize:this.state.fontSize}}>Hello {this.props.title} {this.props.name}!</h1>
+							<p>Nice to meet you!</p></div>;
+				},
+				
+				componentWillMount:function(){
+					alert("will");
+				},
+				
+				componentDidMount:function(){
+					var _self=this;
+					alert('did');
+					window.setTimeout(function(){
+						_self.setState({
+							opacity:0.5,
+							fontSize:'44px'
+						});
+					},1000);
+				}
+			});
+			
+			ReactDOM.render(
+				<HelloMassage name="world" title="Ms"/>,
+				document.getElementById("container")
+			);
+		</script>
+		
+	</body>
+</html>

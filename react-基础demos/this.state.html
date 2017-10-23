@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/react.js"></script>
+		<script src="js/react-dom.js"></script>
+		<script src="js/browser.min.js"></script>
+	</head>
+	<body>
+		<div id="example"></div>
+		<script type="text/babel">
+			var LikeButton=React.createClass({
+				getInitialState:function(){
+					return {liked:false};					
+				},
+				handleClick:function(){
+					this.setState({"liked":!this.state.liked});
+				},
+				render:function(){
+					var text=this.state.liked?"like":"don't like";
+					return (
+						<p onClick={this.handleClick}>You {text} the English!</p>
+					)
+				}
+			});
+			ReactDOM.render(
+				<LikeButton />,
+				document.getElementById("example")
+			);
+		</script>
+	</body>
+</html>
